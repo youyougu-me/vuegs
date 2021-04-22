@@ -1,0 +1,138 @@
+.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.display-flex-row {
+  .display-flex();
+  flex-direction: row;
+}
+
+.display-flex-col {
+  .display-flex();
+  flex-direction: column;
+}
+
+@flex-start: flex-start;
+@f-center: center;
+@flex-end: flex-end;
+@f-space-between: space-between;
+@f-space-around: space-around;
+
+
+
+// 左上起
+.layout-left-top {
+  .display-flex-row();
+  justify-content: @flex-start;
+  align-items: @flex-start;
+}
+
+// 左中起
+
+.layout-left-center {
+  .display-flex-row();
+  justify-content: @flex-start;
+  align-items: @f-center;
+}
+
+// 左下起
+
+.layout-left-bottom {
+  .display-flex-row();
+
+  justify-content: @flex-start;
+  align-items: @flex-end;
+}
+
+// 中上起
+
+.layout-center-top {
+  .display-flex-col();
+
+  justify-content: @flex-start;
+  align-items: @f-center;
+}
+
+.layout-center-h {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.layout-center-v {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+// 居中
+
+.layout-center {
+  .display-flex-row();
+
+  justify-content: @f-center;
+  align-items: @f-center;
+}
+
+// 分散在两边
+
+.layout-side {
+  .display-flex-row();
+
+  justify-content: @f-space-between;
+  align-items: @f-center;
+}
+
+// 两端对齐，中间间隔相等
+
+.layout-side-n {
+  .display-flex-row();
+  justify-content: @f-space-between;
+}
+
+// 模块间间隔相等
+.layout-side-na {
+  .display-flex-row();
+
+  justify-content: @f-space-around;
+}
+
+// 右上起
+
+.layout-right-top {
+  .display-flex-row();
+
+  justify-content: @flex-end;
+  align-items: @flex-start;
+}
+
+// 右中起
+
+.layout-right-center {
+  .display-flex-row();
+
+  justify-content: @flex-end;
+  align-items: @f-center;
+}
+
+// 右下起
+
+.layout-right-bottom {
+  .display-flex-row();
+
+  justify-content: @flex-end;
+  align-items: @flex-end;
+}
+
+
+
+
+
+
+
+
