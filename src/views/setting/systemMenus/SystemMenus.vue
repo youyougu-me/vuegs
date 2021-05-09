@@ -4,7 +4,7 @@
     <div style="width: 350px;height: 100%;background-color: darkseagreen;">
       <div>节点详情:</div>
       <div class="layout-side" style="width: 100%;">
-        <div style="width: 100px;text-align: right;">组件:</div>
+        <div style="width: 80px;text-align: right;">组件:</div>
         <div>
           <ComponentsTree></ComponentsTree>
         </div>

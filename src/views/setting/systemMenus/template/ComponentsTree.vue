@@ -1,7 +1,7 @@
 <template>
   <div style="width: 100%;height: 100%;">
     <a-tree-select
-      style="width: 230px;"
+      style="width: 250px;"
       v-model="checkedKeys"
       :treeData="treeData"
       treeDefaultExpandAll

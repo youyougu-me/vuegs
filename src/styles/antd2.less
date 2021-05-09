@@ -1,0 +1,47 @@
+@import '~ant-design-vue/dist/antd.less';
+@primary-color: #0aa679; // 全局主色
+@link-color: #0aa679; // 链接色
+@success-color: #52c41a; // 成功色
+@warning-color: #faad14; // 警告色
+@error-color: #f5222d; // 错误色
+@font-size-base: 16px; // 主字号
+@heading-color: rgba(0, 0, 0, 0.85); // 标题色
+@text-color: rgba(0, 0, 0, 0.65); // 主文本色
+@text-color-secondary: rgba(0, 0, 0, 0.45); // 次文本色
+@disabled-color: rgba(0, 0, 0, 0.25); // 失效色
+@border-radius-base: 4px; // 组件/浮层圆角
+@border-color-base: #d9d9d9; // 边框色
+@box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15); // 浮层阴影
+
+// 1、侧边栏菜单
+@menu-inline-toplevel-item-height: 40px;
+@menu-item-height: 40px;
+@menu-collapsed-width: 80px;
+@menu-bg: @primary-color;
+@menu-popup-bg: @component-background;
+@menu-item-color: @text-color;
+@menu-highlight-color: #fff;
+@menu-item-active-bg: @item-active-bg;
+@menu-item-active-border-width: 3px;
+@menu-item-group-title-color: @text-color-secondary;
+@menu-icon-size: @font-size-base;
+@menu-icon-size-lg: @font-size-lg;
+@menu-item-vertical-margin: 4px;
+@menu-item-font-size: @font-size-base;
+@menu-item-boundary-margin: 8px;
+.ant-menu-inline{
+  border-right: none;
+}
+
+// 2、滚动条
+::-webkit-scrollbar { /*滚动条整体样式*/
+  width:10px; /*高宽分别对应横竖滚动条的尺寸*/
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb { /*滚动条里面小方块*/
+  background-color: @primary-color;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  border-radius: 5px;
+}

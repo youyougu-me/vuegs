@@ -73,6 +73,7 @@ module.exports = {
     loaderOptions: {
       less: {
         // prependData: `@import "./src/styles/main.scss";`
+        javascriptEnabled: true,
       }
     },
     // requireModuleExtension: false

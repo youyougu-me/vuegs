@@ -1,8 +1,7 @@
 <template>
   <div
     style="width: 100%;height: 100%; "
-    :style="{'background-color':$publicConfig.color.backgroundColor}"
-    class="layout-center"
+    class="layout-center bgColor_"
   >
     <div
       style="width: 600px;height: 400px;border: 1px solid #000;border-radius: 10px;text-align: center;"

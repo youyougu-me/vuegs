@@ -2,7 +2,6 @@
   <div style="width: 100%;height: 100%;">
     <a-menu
       mode="inline"
-      theme="dark"
     >
       <template v-for="item in menuList">
         <a-menu-item v-if="!item.children" :key="item.key">

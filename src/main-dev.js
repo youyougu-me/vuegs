@@ -5,7 +5,6 @@ import router from './router/index'
 import "./router/premit"
 import store from './store'
 import Antd from 'ant-design-vue'
-import 'ant-design-vue/dist/antd.css'
 import {message} from "ant-design-vue"
 
 
