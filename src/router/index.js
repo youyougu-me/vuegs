@@ -34,7 +34,7 @@ const routes = [
       {
         path: "setting",
         component: () => import("@/views/layout/ModuleCommonPage"),
-        redirect: '/index/setting/userRole',
+        redirect: '/index/setting/systemMenus',
         children: [
           {
             path: "userRole",
