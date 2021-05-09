@@ -1,7 +1,7 @@
 <template>
   <div
-    style="width: 100%;height: 100%;border-bottom: 1px solid #000;"
-    class="layout-side"
+    style="width: 100%;height: 100%;"
+    class="layout-side bgColor2_"
   >
     <div style="height: 100%;" class="layout-left-center">
       <a-icon
