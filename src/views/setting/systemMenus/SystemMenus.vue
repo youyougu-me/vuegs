@@ -1,17 +1,27 @@
 <template>
   <div style="width: 100%;height: 100%;" class="layout-left-top">
-    <div style="width: 250px;height: 100%;background-color: palevioletred;"></div>
-    <div style="width: 300px;height: 100%;background-color: darkseagreen;">
+    <div style="width: 300px;height: 100%;background-color: palevioletred;"></div>
+    <div style="width: 350px;height: 100%;background-color: darkseagreen;">
       <div>节点详情:</div>
-      <div class="layout-side">
-        组件:
+      <div class="layout-side" style="width: 100%;">
+        <div style="width: 100px;text-align: right;">组件:</div>
+        <div>
+          <ComponentsTree></ComponentsTree>
+        </div>
       </div>
     </div>
-    <div style="width: calc(100% - 250px - 300px);height: 100%;background-color: cadetblue;"></div>
+    <div style="width: calc(100% - 350px - 300px);height: 100%;background-color: cadetblue;"></div>
   </div>
 </template>
 
 <script>
+  import ComponentsTree from "@/views/setting/systemMenus/template/ComponentsTree";
+
+  export default {
+    components: {
+      ComponentsTree
+    }
+  }
 
 </script>
 
