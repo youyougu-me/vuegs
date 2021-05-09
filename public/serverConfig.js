@@ -1,6 +1,6 @@
 
 const config = {
-  se_color: {
+  color: {
     backgroundColor: 'rgba(74, 116, 107,1)'
   }
 }

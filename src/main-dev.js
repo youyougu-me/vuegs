@@ -16,7 +16,7 @@ Vue.use(Antd)
 Vue.config.productionTip = false
 Vue.prototype.$message = message
 // 颜色配置
-Vue.prototype.$bgColor = config.se_color.backgroundColor
+Vue.prototype.$publicConfig = config
 
 new Vue({
   router,
