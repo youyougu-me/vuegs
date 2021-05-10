@@ -7,7 +7,7 @@
       </div>
       <div style="width: 100%;height: calc(100% - 50px);overflow: hidden;">
         <a-tree
-          v-model="checkedKeys"
+          v-model="checkedMenuNode"
           checkable
           :expanded-keys="expandedKeys"
           :auto-expand-parent="autoExpandParent"
@@ -37,6 +37,12 @@
   export default {
     components: {
       ComponentsTree
+    },
+    data(){
+      return{
+        // 选中的菜单节点
+        checkedMenuNode:[],
+      }
     }
   }
 
