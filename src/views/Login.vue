@@ -6,7 +6,7 @@
     <div
       style="width: 600px;height: 400px;border: 1px solid #000;border-radius: 10px;text-align: center;"
     >
-      <div style="margin-top: 60px;font-size: 20px;">简单管理系统</div>
+      <div style="margin-top: 60px;font-size: 20px;">微小帐管理系统</div>
       <a-input style="width: 75%;margin-top: 20px;" size="large" v-model="email"></a-input>
       <a-input style="width: 75%;margin-top: 20px;" size="large" type="password" v-model="password"></a-input>
       <div class="layout-center" style="margin-top: 20px;">

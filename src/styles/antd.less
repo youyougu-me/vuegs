@@ -1,44 +1,42 @@
+
+// 专属antd~
 @import '~ant-design-vue/dist/antd.less';
-@base-color: #7e6b5a;
-@body-bg-color: rgb(72, 88, 84);
-@head-bg-color: #c4ae96;
-@white: #fff;
-@primary-color: @base-color;
-@transparent: transparent;
-@success-color: @base-color;
-@processing-color: @base-color;
-@disabled-color: fade(@white, 70%);
-@border-color-base: fade(@base-color, 60%); // base border outline a component
-@border-color: rgb(203, 201, 163);
-@border-color-white: @border-color;
-@border-color-black: #cbc9a3;
-@border-color-black-new: rgba(rgba(56, 60, 57, 0.9));
-@text-color: #e8e6c2; // 主文本色
-@text-color-secondary: rgba(254, 234, 202, .95); // 次文本色
-@all-input-bg: #a6937c;
-@input-color: @text-color;
-@input-bg: @all-input-bg;
-@input-border-color: @border-color-base;
-@input-hover-border-color: @base-color;
-@input-disabled-bg: @all-input-bg;
-@input-addon-bg: @all-input-bg;
-@card-background: #a6937c;
-@radio-dot-color: @base-color;
-@btn-primary-color: #ffeebb;
-@btn-primary-bg: #7e6b5a;
-@btn-default-color: #ffeebb;
-@btn-default-bg: #7e6b5a;
-@btn-default-border: @border-color-base;
-@btn-disable-color: #ffeebb;
-@btn-disable-bg: #7e6b5a;
-@btn-disable-border: @border-color-base;
-@table-header-color: @text-color-secondary;
-@table-row-hover-bg: #35413f;
-@table-selected-row-bg: #aeaaa3;
-@modal-heading-color: fade(@white, 70%);
-@select-background: #a6937c;
-@select-dropdown-bg: #a6937c;
-@menu-bg: #6d847e;
-@badge-text-color: #000000;
-@tag-default-bg: #a6937c;
-@radio-button-checked-bg: #83A3A6 !important;
+@primary-color: #63c4bb; // 全局主色
+@link-color: #0aa679; // 链接色
+@success-color: #449179; // 成功色
+@warning-color: #faad14; // 警告色
+@error-color: #e76e58; // 错误色
+@font-size-base: 16px; // 主字号
+@heading-color: rgba(0, 0, 0, 0.85); // 标题色
+@text-color: rgba(0, 0, 0, 0.65); // 主文本色
+@text-color-secondary: rgba(0, 0, 0, 0.45); // 次文本色
+@disabled-color: rgba(0, 0, 0, 0.25); // 失效色
+@border-radius-base: 4px; // 组件/浮层圆角
+@border-color-base: #d9d9d9; // 边框色
+@box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15); // 浮层阴影
+
+// 1、侧边栏菜单
+@menu-inline-toplevel-item-height: 40px;
+@menu-item-height: 40px;
+@menu-collapsed-width: 80px;
+@menu-bg: @component-background;
+@menu-popup-bg: @component-background;
+@menu-item-color: @text-color;
+@menu-highlight-color: @primary-color;
+@menu-item-active-bg: @item-active-bg;
+@menu-item-active-border-width: 3px;
+@menu-item-group-title-color: @text-color-secondary;
+@menu-icon-size: @font-size-base;
+@menu-icon-size-lg: @font-size-lg;
+@menu-item-vertical-margin: 4px;
+@menu-item-font-size: @font-size-base;
+@menu-item-boundary-margin: 8px
+.ant-menu-inline{
+  border-right: none;
+}
+// 2、按钮
+.ant-btn-primary{
+  background-color: #0aa679;
+}
+
+
