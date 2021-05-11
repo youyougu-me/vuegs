@@ -26,29 +26,49 @@
       <!--图标-->
       <div class="layout-left-center" style="width: 100%;margin-bottom: 10px;">
         <div style="width: 80px;">图标:</div>
-        <span><a-icon :type="selectedIcon" style="margin-right: 5px;" /><span @click="">请选择</span></span>
+        <span>
+          <a-icon :type="selectedIcon" style="margin-right: 5px;"/>
+          <span
+            @click="$refs.iconModal.isShowIconModal=true"
+            style="cursor: pointer;"
+            :allIconType="allIconType"
+          >请选择
+          </span>
+        </span>
       </div>
     </div>
     <div style="width: calc(100% - 350px - 300px);height: 100%;"></div>
+    <IconModal
+      ref="iconModal"
+      :allIconType="allIconType"
+      :selectedIcon.sync="selectedIcon"
+    ></IconModal>
   </div>
 </template>
 
 <script>
   import ComponentsTree from "@/components/module/setting_systenMenus/ComponentsTree";
-  import {allIconType} from "@/components/module/setting_systenMenus/iconType"
+  import {allIconType} from "@/components/module/setting_systenMenus/iconType";
+  import IconModal from "@c/module/setting_systenMenus/IconModal";
+
   export default {
     components: {
-      ComponentsTree
+      ComponentsTree,
+      IconModal
     },
-    data(){
-      return{
-        menuTreeData:[],
-        selectedIcon:'book',
+    data() {
+      return {
+        menuTreeData: [],
+        selectedIcon: 'book',
+        allIconType: allIconType
       }
     },
-    methods:{
+    mounted() {
+      console.log(this.allIconType)
+    },
+    methods: {
       // 点中菜单树
-      clickMenu(e){
+      clickMenu(e) {
 
       }
     }

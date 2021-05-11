@@ -17,7 +17,6 @@
 </template>
 <script>
   import HeadView from "@/views/layout/Head"
-
   export default {
     components: {
       HeadView
