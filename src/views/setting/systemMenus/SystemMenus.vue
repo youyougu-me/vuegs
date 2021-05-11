@@ -7,24 +7,26 @@
       </div>
       <div style="width: 100%;height: calc(100% - 50px);overflow: hidden;">
         <a-tree
-          v-model="checkedKeys"
           checkable
-          :expanded-keys="expandedKeys"
-          :auto-expand-parent="autoExpandParent"
-          :selected-keys="selectedKeys"
-          :tree-data="treeData"
-          @expand="onExpand"
-          @select="onSelect"
+          :auto-expand-parent="true"
+          :tree-data="menuTreeData"
+          @select="clickMenu"
         />
       </div>
     </div>
     <div style="width: 350px;height: 100%;">
       <div>节点详情:</div>
-      <div class="layout-side" style="width: 100%;">
-        <div style="width: 80px;text-align: right;">组件:</div>
+      <!--组件-->
+      <div class="layout-left-center" style="width: 100%;margin-bottom: 10px;">
+        <div style="width: 80px;">组件:</div>
         <div>
           <ComponentsTree></ComponentsTree>
         </div>
+      </div>
+      <!--图标-->
+      <div class="layout-left-center" style="width: 100%;margin-bottom: 10px;">
+        <div style="width: 80px;">图标:</div>
+        <span><a-icon :type="selectedIcon" style="margin-right: 5px;" /><span @click="">请选择</span></span>
       </div>
     </div>
     <div style="width: calc(100% - 350px - 300px);height: 100%;"></div>
@@ -32,11 +34,23 @@
 </template>
 
 <script>
-  import ComponentsTree from "@/views/setting/systemMenus/template/ComponentsTree";
-
+  import ComponentsTree from "@/components/module/setting_systenMenus/ComponentsTree";
+  import {allIconType} from "@/components/module/setting_systenMenus/iconType"
   export default {
     components: {
       ComponentsTree
+    },
+    data(){
+      return{
+        menuTreeData:[],
+        selectedIcon:'book',
+      }
+    },
+    methods:{
+      // 点中菜单树
+      clickMenu(e){
+
+      }
     }
   }
 
