@@ -2,10 +2,10 @@
   <div class="w100 h100">
     <a-modal v-model="isShowIconModal" title="图标选择" on-ok="handleOk" :maskClosable="false">
       <template slot="footer">
-        <a-button key="back" @click="handleCancel">
+        <a-button key="back" @click="handleOk">
           确定
         </a-button>
-        <a-button key="submit" type="primary" @click="handleOk">
+        <a-button key="submit" type="primary" @click="handleCancel">
           取消
         </a-button>
       </template>
@@ -14,7 +14,7 @@
           <a-icon
             :type="item"
             style="font-size:30px;cursor: pointer;"
-            @click="this.selectedIcon2 = item"
+            @click="iconCilck(item)"
           ></a-icon>
         </div>
       </div>
@@ -22,18 +22,23 @@
   </div>
 </template>
 <script>
+  import {allIconType} from "@/components/module/setting_systenMenus/iconType";
   export default {
-    props: ["allIconType", "selectedIcon"],
+    props: ["selectedIcon"],
     data() {
       return {
+        allIconType:allIconType,
         isShowIconModal: false,
-        selectedIcon2: '',
+        selectedIcon2: 'book',
       };
     },
     mounted() {
 
     },
     methods: {
+      iconCilck(e) {
+        this.selectedIcon2 = e
+      },
       handleOk() {
         this.$emit('update:selectedIcon', this.selectedIcon2)
         this.isShowIconModal = false
