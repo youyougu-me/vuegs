@@ -48,13 +48,13 @@
       <!--上级-->
       <div class="layout-left-center" style="width: 100%;margin-bottom: 20px;">
         <div style="width: 80px;">上级:</div>
-          <a-tree-select
-            v-model="menuParentId"
-            style="width: 250px"
-            :auto-expand-parent="true"
-            :tree-data="menuTreeData"
-            :dropdownStyle="{maxHeight:'400px',overflow:'auto'}"
-          />
+        <a-tree-select
+          v-model="menuParentId"
+          style="width: 250px"
+          :auto-expand-parent="true"
+          :tree-data="menuTreeData"
+          :dropdownStyle="{maxHeight:'400px',overflow:'auto'}"
+        />
       </div>
       <!--面包屑-->
       <div class="layout-left-center" style="width: 100%;margin-bottom: 20px;">
@@ -69,7 +69,7 @@
         <div style="width: 80px;">功能权限:</div>
         <div style="width: 250px;" class="layout-left-center">
           <span style="margin-left: 10px;">1</span>
-          <span style="margin-left: 10px;">编辑</span>
+          <span style="margin-left: 10px;cursor: pointer;" @click="$refs.funcRoleModal.isFuncRoleModal=true">编辑</span>
         </div>
       </div>
       <!--新增提交-->
@@ -83,17 +83,22 @@
       ref="iconModal"
       :selectedIcon.sync="selectedIcon"
     ></IconModal>
+    <FuncRoleModal ref="funcRoleModal">
+
+    </FuncRoleModal>
   </div>
 </template>
 
 <script>
   import ComponentsTree from "@/components/module/setting_systenMenus/ComponentsTree";
   import IconModal from "@c/module/setting_systenMenus/IconModal";
+  import FuncRoleModal from "@c/module/setting_systenMenus/FuncRoleModal";
 
   export default {
     components: {
       ComponentsTree,
-      IconModal
+      IconModal,
+      FuncRoleModal
     },
     data() {
       return {
@@ -101,10 +106,10 @@
         menuTreeData: [],
         selectedIcon: 'book',
         parent: '',
-        isBread:true,
-        menuTitle:'',
-        menuPath:'',
-        menuParentId:'',
+        isBread: true,
+        menuTitle: '',
+        menuPath: '',
+        menuParentId: '',
       }
     },
     mounted() {
