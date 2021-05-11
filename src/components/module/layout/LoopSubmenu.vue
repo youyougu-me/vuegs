@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import LoopSubmenu from "@/components/LoopSubmenu"
+  import LoopSubmenu from "@/components/module/layout/LoopSubmenu"
   import {Menu} from 'ant-design-vue';
 
   export default {
