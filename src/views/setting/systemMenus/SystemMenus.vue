@@ -105,11 +105,12 @@
         // 提交需要
         menuTreeData: [],
         selectedIcon: 'book',
-        parent: '',
         isBread: true,
         menuTitle: '',
         menuPath: '',
         menuParentId: '',
+        // 树节点唯一值
+        onlyId:''
       }
     },
     mounted() {

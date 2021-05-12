@@ -1,5 +1,5 @@
 <template>
-  <div class="w100 h100">
+  <div>
     <a-modal v-model="isShowIconModal" title="图标选择" on-ok="handleOk" :maskClosable="false">
       <template slot="footer">
         <a-button key="back" @click="handleOk">
