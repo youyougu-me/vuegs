@@ -21,11 +21,15 @@
             <a-button style="width: 50%;" type="primary">新增</a-button>
             <a-button style="width: 50%;" type="danger">删除</a-button>
           </div>
-          <div class="w100 cp hoverChange" style="margin-top:15px;">
-            新增训练计划
-          </div>
-          <div class="w100 cp hoverChange" style="margin-top:5px;">
-            新增设计
+          <div
+            class="w100 cp"
+            style="margin-top:15px;"
+            v-for="(item,index) in funRole"
+            :key="index"
+            :class="[{'clickActiveItem':index === activeItem},{'hoverChange':index !== activeItem}]"
+            @click="clickFuncRoleItem(item,index)"
+          >
+            {{item.menuTitle}}
           </div>
         </div>
         <div class="h100 border" style="width: 58%"></div>
@@ -39,12 +43,14 @@
     props: [],
     data() {
       return {
+        // 当前激活的功能项
+        activeItem: 0,
         isFuncRoleModal: false,
         funRole: [
           {
             type: 0,
             menuTitle: '新增训练计划',
-            onlyId:'add1'
+            onlyId: 'add1'
           },
           {
             type: 1,
@@ -52,7 +58,7 @@
             menuTitle: '新增设计',
             menuPath: '',
             menuParentId: '',
-            onlyId:'add2'
+            onlyId: 'add2'
           }
         ]
       };
@@ -61,6 +67,9 @@
 
     },
     methods: {
+      clickFuncRoleItem(item, index) {
+        this.activeItem = index
+      },
       handleOk() {
         this.isFuncRoleModal = false
       },
@@ -70,3 +79,7 @@
     }
   };
 </script>
+
+<style lang="less" scoped>
+
+</style>
