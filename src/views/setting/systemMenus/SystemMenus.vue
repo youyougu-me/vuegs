@@ -68,7 +68,7 @@
       <div class="layout-left-center" style="width: 100%;margin-bottom: 20px;">
         <div style="width: 80px;">功能权限:</div>
         <div style="width: 250px;" class="layout-left-center">
-          <span style="margin-left: 10px;">1</span>
+          <span style="margin-left: 10px;">{{funcNumber}}</span>
           <span style="margin-left: 10px;cursor: pointer;" @click="$refs.funcRoleModal.isFuncRoleModal=true">编辑</span>
         </div>
       </div>
@@ -83,9 +83,10 @@
       ref="iconModal"
       :selectedIcon.sync="selectedIcon"
     ></IconModal>
-    <FuncRoleModal ref="funcRoleModal">
-
-    </FuncRoleModal>
+    <FuncRoleModal
+      ref="funcRoleModal"
+      :funcNumber.sync="funcNumber"
+    ></FuncRoleModal>
   </div>
 </template>
 
@@ -102,6 +103,8 @@
     },
     data() {
       return {
+        // 功能权限的数量
+        funcNumber: '',
         // 提交需要
         menuTreeData: [],
         selectedIcon: 'appstore',
@@ -110,10 +113,11 @@
         menuPath: '',
         menuParentId: '',
         // 树节点唯一值
-        onlyId:''
+        onlyId: ''
       }
     },
     mounted() {
+      this.funcNumber = this.$refs.funcRoleModal.funRoleData.length
     },
     methods: {
       // 点中菜单树

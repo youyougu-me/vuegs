@@ -4,8 +4,10 @@
       v-model="isFuncRoleModal"
       title="功能权限"
       on-ok="handleOk"
+      @cancel="handleCancel"
       :maskClosable="false"
       :width="700"
+      :footer="null"
     >
       <template slot="footer">
         <a-button key="back" @click="handleOk">
@@ -18,18 +20,18 @@
       <div class="w100 layout-side" style="height: 400px;">
         <div class="h100 border" style="width: 40%;padding: 10px;">
           <div class="layout-side">
-            <a-button style="width: 50%;" type="primary">新增</a-button>
+            <a-button style="width: 50%;" type="primary" @click="addFunRoleData">新增</a-button>
             <a-button style="width: 50%;" type="danger">删除</a-button>
           </div>
           <div
             class="w100 cp"
             style="margin-top:15px;"
-            v-for="(item,index) in funRole"
+            v-for="(item,index) in funRoleData"
             :key="index"
             :class="[{'clickActiveItem':index === activeItem},{'hoverChange':index !== activeItem}]"
             @click="clickFuncRoleItem(item,index)"
           >
-            {{item.menuTitle}}
+            {{item.title}}
           </div>
         </div>
         <div class="h100 border" style="width: 58%">
@@ -38,7 +40,7 @@
             <!--类型-->
             <div class="layout-left-center" style="width: 100%;margin-bottom: 20px;">
               <div style="width: 80px;">类型:</div>
-              <a-radio-group v-model="funcRoleSetting.type" buttonStyle="solid" style="text-align: center;">
+              <a-radio-group v-model="funcRoleSettingCurrent.type" buttonStyle="solid" style="text-align: center;">
                 <a-radio-button value="false" style="width: 125px">路由</a-radio-button>
                 <a-radio-button value="true" style="width: 125px">modal</a-radio-button>
               </a-radio-group>
@@ -46,23 +48,24 @@
             <!--标题-->
             <div class="layout-left-center" style="width: 100%;margin-bottom: 20px;">
               <div style="width: 80px;">标题:</div>
-              <a-input style="width: 250px;" v-model="funcRoleSetting.title"></a-input>
+              <a-input style="width: 250px;" v-model="funcRoleSettingCurrent.title"></a-input>
             </div>
             <!--组件-->
             <div
               class="layout-left-center"
               style="width: 100%;margin-bottom: 20px;"
-              v-if="funcRoleSetting.type === 'false'">
+              v-if="funcRoleSettingCurrent.type === 'false'">
               <div style="width: 80px;">组件:</div>
               <div>
                 <ComponentsTree ref="componentsTree"></ComponentsTree>
               </div>
             </div>
             <!--图标-->
-            <div class="layout-left-center" style="width: 100%;margin-bottom: 20px;"  v-if="funcRoleSetting.type === 'false'">
+            <div class="layout-left-center" style="width: 100%;margin-bottom: 20px;"
+                 v-if="funcRoleSettingCurrent.type === 'false'">
               <div style="width: 80px;">图标:</div>
               <span>
-          <a-icon :type="funcRoleSetting.icon" style="margin-right: 5px;"/>
+          <a-icon :type="funcRoleSettingCurrent.icon" style="margin-right: 5px;"/>
           <span
             @click="$refs.iconModal.isShowIconModal=true"
             style="cursor: pointer;"
@@ -71,20 +74,22 @@
         </span>
             </div>
             <!--路径-->
-            <div class="layout-left-center" style="width: 100%;margin-bottom: 20px;"  v-if="funcRoleSetting.type === 'false'">
+            <div class="layout-left-center" style="width: 100%;margin-bottom: 20px;"
+                 v-if="funcRoleSettingCurrent.type === 'false'">
               <div style="width: 80px;">路径:</div>
-              <a-input style="width: 250px;" v-model="funcRoleSetting.path"></a-input>
+              <a-input style="width: 250px;" v-model="funcRoleSettingCurrent.path"></a-input>
             </div>
             <!--标识-->
             <div class="layout-left-center" style="width: 100%;margin-bottom: 20px;">
               <div style="width: 80px;">标识:</div>
-              <a-input style="width: 250px;" v-model="funcRoleSetting.flag"></a-input>
+              <a-input style="width: 250px;" v-model="funcRoleSettingCurrent.onlyId"></a-input>
 
             </div>
             <!--面包屑-->
-            <div class="layout-left-center" style="width: 100%;margin-bottom: 20px;"  v-if="funcRoleSetting.type === 'false'">
+            <div class="layout-left-center" style="width: 100%;margin-bottom: 20px;"
+                 v-if="funcRoleSettingCurrent.type === 'false'">
               <div style="width: 80px;">面包屑:</div>
-              <a-radio-group v-model="funcRoleSetting.isBread" buttonStyle="solid" style="text-align: center;">
+              <a-radio-group v-model="funcRoleSettingCurrent.isBread" buttonStyle="solid" style="text-align: center;">
                 <a-radio-button value="false" style="width: 125px">false</a-radio-button>
                 <a-radio-button value="true" style="width: 125px">true</a-radio-button>
               </a-radio-group>
@@ -96,7 +101,7 @@
     </a-modal>
     <IconModal
       ref="iconModal"
-      :selectedIcon.sync="funcRoleSetting.icon"
+      :selectedIcon.sync="funcRoleSettingCurrent.icon"
     ></IconModal>
   </div>
 </template>
@@ -105,7 +110,7 @@
   import IconModal from "@c/module/setting_systenMenus/IconModal";
 
   export default {
-    props: [],
+    props: ["funcNumber"],
     components: {
       ComponentsTree,
       IconModal
@@ -114,44 +119,79 @@
       return {
         // 当前激活的功能项
         activeItem: 0,
-        isFuncRoleModal: true,
-        funRole: [
+        isFuncRoleModal: false,
+        funRoleData: [
           {
-            type: 0,
-            menuTitle: '新增训练计划',
-            onlyId: 'add1'
+            // 模
+            type: 'false',// 路由
+            // 模
+            title: '新增训练计划',
+            // 模
+            onlyId: 'add1',
+            icon: 'appstore',
+            path: '/addPlan',
+            isBread: 'true',
           },
           {
-            type: 1,
-            isBread: true,
-            menuTitle: '新增设计',
-            menuPath: '',
-            menuParentId: '',
+            // 模
+            type: 'true',
+            // 模
+            title: '训练设计',
+            // 模
             onlyId: 'add2'
           }
         ],
-        funcRoleSetting: {
+        funcRoleSettingCurrent: {
+          // 模
+          type: 'false',
+          // 模
           title: '',
+          // 模
+          onlyId: '',
           icon: 'appstore',
           path: '',
-          flag: '',
           isBread: 'false',
-          type: 'false'
+        },
+        funcRoleSettingClean: {
+          type: 'false',
+          title: '新增项',
+          onlyId: '',
+          icon: 'appstore',
+          path: '',
+          isBread: 'false',
         }
       };
     },
     mounted() {
-
+      // 默认显示已有的第一项
+      if (this.funRoleData.length > 0) {
+        this.funcRoleSettingCurrent = this.funRoleData[0]
+      }
     },
     methods: {
       clickFuncRoleItem(item, index) {
         this.activeItem = index
+        // 不能用深拷贝,用的就是双向绑定
+        this.funcRoleSettingCurrent = this.funRoleData[this.activeItem]
       },
       handleOk() {
+        this.$emit("update:funcNumber", this.funRoleData.length)
         this.isFuncRoleModal = false
       },
       handleCancel() {
+        this.$emit("update:funcNumber", this.funRoleData.length)
         this.isFuncRoleModal = false
+      },
+      // 初始化填写框
+      clearInput() {
+        this.funcRoleSettingCurrent = JSON.parse(JSON.stringify(this.funcRoleSettingClean))
+      },
+      addFunRoleData() {
+        // 默认为新增路由
+        this.funRoleData.push(JSON.parse(JSON.stringify(this.funcRoleSettingClean)))
+        // 选中新增的
+        this.clickFuncRoleItem(this.funcRoleSettingClean, this.funRoleData.length - 1)
+
       }
     }
   };
