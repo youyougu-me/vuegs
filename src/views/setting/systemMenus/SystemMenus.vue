@@ -104,8 +104,8 @@
       return {
         // 提交需要
         menuTreeData: [],
-        selectedIcon: 'book',
-        isBread: true,
+        selectedIcon: 'appstore',
+        isBread: 'false',
         menuTitle: '',
         menuPath: '',
         menuParentId: '',

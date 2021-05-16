@@ -14,7 +14,8 @@
           <a-icon
             :type="item"
             style="font-size:30px;cursor: pointer;"
-            @click="iconCilck(item)"
+            @click="iconCilck(item,index)"
+            class="hoverChange"
           ></a-icon>
         </div>
       </div>
@@ -29,7 +30,7 @@
       return {
         allIconType:allIconType,
         isShowIconModal: false,
-        selectedIcon2: 'book',
+        selectedIcon2: 'appstore',
       };
     },
     mounted() {
