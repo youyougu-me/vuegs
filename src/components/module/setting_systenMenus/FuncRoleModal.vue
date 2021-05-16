@@ -21,7 +21,7 @@
         <div class="h100 border" style="width: 40%;padding: 10px;">
           <div class="layout-side">
             <a-button style="width: 50%;" type="primary" @click="addFunRoleData">新增</a-button>
-            <a-button style="width: 50%;" type="danger">删除</a-button>
+            <a-button style="width: 50%;" type="danger" @click="deleteFunRoleData">删除</a-button>
           </div>
           <div
             class="w100 cp"
@@ -191,7 +191,9 @@
         this.funRoleData.push(JSON.parse(JSON.stringify(this.funcRoleSettingClean)))
         // 选中新增的
         this.clickFuncRoleItem(this.funcRoleSettingClean, this.funRoleData.length - 1)
-
+      },
+      deleteFunRoleData() {
+        this.funRoleData.splice(this.activeItem, 1)
       }
     }
   };
