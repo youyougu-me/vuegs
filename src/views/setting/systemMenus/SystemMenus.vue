@@ -125,7 +125,7 @@
 
       },
       submit() {
-        console.log(this.$refs.iconModal.selectedIcon2)
+        console.log(this.$refs.funcRoleModal.funRoleData)
       }
     }
   }

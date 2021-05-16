@@ -57,7 +57,9 @@
               v-if="funcRoleSettingCurrent.type === 'false'">
               <div style="width: 80px;">组件:</div>
               <div>
-                <ComponentsTree ref="componentsTree"></ComponentsTree>
+                <ComponentsTree ref="componentsTree"
+                                :component.sync="funcRoleSettingCurrent.funcComponent"
+                ></ComponentsTree>
               </div>
             </div>
             <!--图标-->
@@ -131,6 +133,7 @@
             icon: 'appstore',
             path: '/addPlan',
             isBread: 'true',
+            funcComponent: '',
           },
           {
             // 模
@@ -151,6 +154,7 @@
           icon: 'appstore',
           path: '',
           isBread: 'false',
+          funcComponent: '',
         },
         funcRoleSettingClean: {
           type: 'false',
@@ -159,6 +163,7 @@
           icon: 'appstore',
           path: '',
           isBread: 'false',
+          funcComponent: '',
         }
       };
     },

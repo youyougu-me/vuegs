@@ -6,13 +6,13 @@
       :treeData="treeData"
       treeDefaultExpandAll
       :dropdownStyle="{maxHeight:'400px',overflow:'auto'}"
-      @select="onSelect"/>
+      @change="onSelect"/>
   </div>
 </template>
 
 <script>
   export default {
-    props: [],
+    props: ['component'],
     data() {
       return {
         treeData: [],
@@ -24,7 +24,8 @@
     },
     methods: {
       onSelect() {
-
+        // console.log(this.checkedKeys)
+        this.$emit('update:component', this.checkedKeys)
       },
       getTreeData() {
         let treeArr = []
@@ -69,7 +70,7 @@
             needArr.push({
               title: item.name,
               key: item.id,
-              value:item.id,
+              value: item.id,
               path: item.id,
               children: this.dgTree(arr, item.id)
             })
