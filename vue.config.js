@@ -1,6 +1,3 @@
-
-
-
 const path = require('path');
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? '' : '/',
@@ -57,7 +54,7 @@ module.exports = {
         'vue': 'vue/dist/vue.js',
         '@': path.resolve(__dirname, './src'),
         '@c': path.resolve(__dirname, './src/components'),
-        '@assets':path.resolve(__dirname, './src/assets')
+        '@assets': path.resolve(__dirname, './src/assets')
       }
     }
   },

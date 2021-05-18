@@ -181,16 +181,23 @@
       },
       handleOk() {
         this.$emit("update:funcNumber", this.funRoleData.length)
-        this.isFuncRoleModal = false
+        // this.isFuncRoleModal = false
       },
       handleCancel() {
+        if (this.checkIsExistNotfilled()===true) {
+          return
+        }
         this.$emit("update:funcNumber", this.funRoleData.length)
-        this.isFuncRoleModal = false
+        console.log("哈哈哈")
       },
-      // 初始化填写框
-      clearInput() {
-        this.funcRoleSettingCurrent = JSON.parse(JSON.stringify(this.funcRoleSettingClean))
+      // 检查是否存在未填写项
+      checkIsExistNotfilled() {
+        let flag = true
+        console.log(this.funRoleData)
+        return flag
+
       },
+
       addFunRoleData() {
         // 默认为新增路由
         this.funRoleData.push(JSON.parse(JSON.stringify(this.funcRoleSettingClean)))
