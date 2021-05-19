@@ -3,7 +3,7 @@
     style="width: 100%;height: 100%;"
   >
     <div
-      style="width: 100%;height: 50px;"
+      style="width: 100%;height: 50px;border-bottom: 1px solid #000;"
     >
       <HeadView></HeadView>
     </div>

@@ -25,7 +25,10 @@
       <div class="layout-left-center" style="width: 100%;margin-bottom: 20px;">
         <div style="width: 80px;">组件:</div>
         <div>
-          <ComponentsTree ref="componentsTree"></ComponentsTree>
+          <ComponentsTree
+            ref="componentsTree"
+            :component.sync="itemComponent"
+          ></ComponentsTree>
         </div>
       </div>
       <!--图标-->
@@ -112,8 +115,7 @@
         menuTitle: '',
         menuPath: '',
         menuParentId: '',
-        // 树节点唯一值
-        onlyId: ''
+        itemComponent: '',
       }
     },
     mounted() {
@@ -125,8 +127,30 @@
 
       },
       submit() {
-        console.log(this.$refs.funcRoleModal.funRoleData)
-      }
+        let submitObj = {
+          // 菜单标题
+          menuTitle: this.menuTitle,
+          // 菜单组件
+          itemComponent: this.itemComponent,
+          // 菜单图标
+          selectedIcon: this.itemComponent,
+          // 菜单路径
+          menuPath: this.menuPath,
+          // 菜单父级
+          menuParentId: this.menuParentId,
+          // 菜单面包屑
+          isBread: this.isBread,
+          permissions: this.$refs.funcRoleModal.funRoleData
+        }
+        console.log(submitObj)
+      },
+      // 检查是否存在未填写项
+      checkIsExistNotfilled() {
+        let flag = true
+        console.log(this.funRoleData)
+        return flag
+
+      },
     }
   }
 

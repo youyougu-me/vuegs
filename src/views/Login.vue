@@ -19,8 +19,8 @@
   </div>
 </template>
 <script>
-  import {Login} from "@/api/login";
-  console.log("kkk")
+
+
 
   export default {
     data() {
@@ -33,7 +33,6 @@
     },
     methods: {
       gotoLogin() {
-        console.log("555")
         this.loginLoading = true
         let submitObj = {
           email: this.email,
