@@ -45,7 +45,7 @@
           password: this.password
         }
         ReGister(submitObj).then((res, err) => {
-          let errObj = res.data.meta.msg
+          let errObj = res.meta.msg
           for (let key in errObj) {
             if (key === 'emailSuccessErr') {
               this.$message.success(errObj[key])

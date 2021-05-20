@@ -21,7 +21,7 @@ const actions = {
   login({commit}, data) {
     return new Promise((resolve, reject) => {
       Login(data).then(res => {
-        let result = res.data
+        let result = res
         commit('SET_TOKEN', result.data.token)
         commit('SET_USERNAME', result.data.username)
         localStorage.setItem("token", result.data.token)

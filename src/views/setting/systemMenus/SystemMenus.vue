@@ -7,7 +7,6 @@
       </div>
       <div style="width: 100%;height: calc(100% - 50px);overflow: hidden;">
         <a-tree
-          checkable
           :auto-expand-parent="true"
           :tree-data="menuTreeData"
           @select="clickMenu"
@@ -97,6 +96,7 @@
   import ComponentsTree from "@/components/module/setting_systenMenus/ComponentsTree";
   import IconModal from "@c/module/setting_systenMenus/IconModal";
   import FuncRoleModal from "@c/module/setting_systenMenus/FuncRoleModal";
+  import {AddsystemMenu} from "@/api/systemMenu";
 
   export default {
     components: {
@@ -119,21 +119,38 @@
       }
     },
     mounted() {
+      // 初始化功能权限数量
       this.funcNumber = this.$refs.funcRoleModal.funRoleData.length
+      this.organizeMenuTree()
+
+
     },
     methods: {
+      // 组织菜单树
+      organizeMenuTree() {
+        this.menuTreeData = [
+          {
+            title: '菜单总览',
+            value: '0',
+            key: '0',
+            children: []
+          }
+        ]
+      },
       // 点中菜单树
       clickMenu(e) {
 
       },
       submit() {
+        // 非空验证
+        if (!this.checkIsExistNotfilled()) return
         let submitObj = {
           // 菜单标题
           menuTitle: this.menuTitle,
           // 菜单组件
           itemComponent: this.itemComponent,
           // 菜单图标
-          selectedIcon: this.itemComponent,
+          selectedIcon: this.selectedIcon,
           // 菜单路径
           menuPath: this.menuPath,
           // 菜单父级
@@ -142,13 +159,29 @@
           isBread: this.isBread,
           permissions: this.$refs.funcRoleModal.funRoleData
         }
-        console.log(submitObj)
+        // 与后端以协商好,除非服务挂掉,不然都以200返回.
+        // +返回的数据里有自定义状态码,1成功,0失败
+        AddsystemMenu(submitObj).then(res => {
+          console.log(res)
+        }).catch(err => {
+          console.log(err)
+        })
       },
       // 检查是否存在未填写项
       checkIsExistNotfilled() {
         let flag = true
-        console.log(this.funRoleData)
-        return flag
+        if (!this.menuTitle.trim()) {
+          flag = false
+          this.$message.warning("菜单标题未填写")
+          return flag
+        }
+        if (!this.itemComponent.trim()) {
+          flag = false
+          this.$message.warning("菜单组件未选择")
+          return flag
+        }
+        return true
+
 
       },
     }
