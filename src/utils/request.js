@@ -26,7 +26,6 @@ service.interceptors.response.use(response => {
   // 为接口返回数据剥去一层壳
   return response.data
 }, error => {
-  console.log("666")
   return Promise.reject(error)
 })
 

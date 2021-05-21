@@ -123,26 +123,26 @@
         activeItem: 0,
         isFuncRoleModal: false,
         funRoleData: [
-          {
-            // 模
-            type: 'false',// 路由
-            // 模
-            title: '新增训练计划',
-            // 模
-            onlyId: 'add1',
-            icon: 'appstore',
-            path: '/addPlan',
-            isBread: 'true',
-            funcComponent: '',
-          },
-          {
-            // 模
-            type: 'true',
-            // 模
-            title: '训练设计',
-            // 模
-            onlyId: 'add2'
-          }
+          // {
+          //   // 模
+          //   type: 'false',// 路由
+          //   // 模
+          //   title: '新增训练计划',
+          //   // 模
+          //   onlyId: 'add1',
+          //   icon: 'appstore',
+          //   path: '/addPlan',
+          //   isBread: 'true',
+          //   funcComponent: '',
+          // },
+          // {
+          //   // 模
+          //   type: 'true',
+          //   // 模
+          //   title: '训练设计',
+          //   // 模
+          //   onlyId: 'add2'
+          // }
         ],
         funcRoleSettingCurrent: {
           // 模

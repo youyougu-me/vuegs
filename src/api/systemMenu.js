@@ -8,3 +8,12 @@ export function AddsystemMenu(data) {
     data
   })
 }
+
+export function QuerySystemMenu(data) {
+
+  return service.request({
+    method: "post",
+    url: "/querySystemMenu",
+    data
+  })
+}

@@ -162,9 +162,14 @@
         // 与后端以协商好,除非服务挂掉,不然都以200返回.
         // +返回的数据里有自定义状态码,1成功,0失败
         AddsystemMenu(submitObj).then(res => {
-          console.log(res)
+          if (res.meta.status === 1) {
+            this.$message.success("添加成功")
+          } else {
+            this.$message.warning("添加失败")
+          }
+          // 什么时候走.catch,后端服务挂掉
         }).catch(err => {
-          console.log(err)
+          this.$message.warning("添加失败")
         })
       },
       // 检查是否存在未填写项
