@@ -1,6 +1,6 @@
 
 const config = {
   color: {
-    mainColor: '#0aa679'
+    mainColor: '#cce8cf'
   }
 }

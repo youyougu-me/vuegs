@@ -22,7 +22,18 @@
     mounted() {
       this.getTreeData()
     },
+    watch: {
+      component: {
+        handler: 'watchComponentChange',
+        immediate: true
+      }
+    },
     methods: {
+      // 实现父子组件传值的双向绑定
+      watchComponentChange(newVal, oldVal) {
+        // 如果这个不改变的话便是上一次的双向绑定值
+        this.checkedKeys = [newVal]
+      },
       onSelect() {
         // console.log(this.checkedKeys)
         this.$emit('update:component', this.checkedKeys)

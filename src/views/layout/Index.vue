@@ -1,6 +1,7 @@
 <template>
   <div
     style="width: 100%;height: 100%;"
+    :style="{'background-color':$publicConfig.color.mainColor}"
   >
     <div
       style="width: 100%;height: 50px;border-bottom: 1px solid #000;"
@@ -17,6 +18,7 @@
 </template>
 <script>
   import HeadView from "@/views/layout/Head"
+
   export default {
     components: {
       HeadView

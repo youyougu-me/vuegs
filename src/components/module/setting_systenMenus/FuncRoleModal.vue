@@ -31,7 +31,7 @@
             :class="[{'clickActiveItem':index === activeItem},{'hoverChange':index !== activeItem}]"
             @click="clickFuncRoleItem(item,index)"
           >
-            {{item.title}}
+            {{item.title.trim()?item.title:'标题未填写'}}
           </div>
         </div>
         <div class="h100 border" style="width: 58%">

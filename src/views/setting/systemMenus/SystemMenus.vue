@@ -185,9 +185,44 @@
           this.$message.warning("菜单组件未选择")
           return flag
         }
-        return true
-
-
+        if (!this.menuPath.trim()) {
+          flag = false
+          this.$message.warning("菜单路径未选择")
+          return flag
+        }
+        if (!this.menuParentId.trim()) {
+          flag = false
+          this.$message.warning("菜单上级未选择")
+          return flag
+        }
+        // 功能权限里面的
+        if (this.$refs.funcRoleModal.funRoleData.length > 0) {
+          let funcs = this.$refs.funcRoleModal.funRoleData
+          for (let item of funcs) {
+            if (!item.title.trim()) {
+              flag = false
+              this.$message.warning("存在功能权限的标题未填写")
+              return flag
+            }
+            if (!item.onlyId.trim()) {
+              flag = false
+              this.$message.warning("存在功能权限的标识未填写")
+              return flag
+            }
+            if (!item.funcComponent.trim()) {
+              flag = false
+              this.$message.warning("存在功能权限的组件未填写")
+              return flag
+            }
+            if (!item.path.trim()) {
+              flag = false
+              this.$message.warning("存在功能权限的路径未填写")
+              return flag
+            }
+          }
+        }
+        // 没有return false那就是全部都通过 flag始终为true
+        return flag
       },
     }
   }
