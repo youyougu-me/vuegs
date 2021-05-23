@@ -97,6 +97,7 @@
   import IconModal from "@c/module/setting_systenMenus/IconModal";
   import FuncRoleModal from "@c/module/setting_systenMenus/FuncRoleModal";
   import {AddsystemMenu} from "@/api/systemMenu";
+  import {QuerySystemMenu} from "@/api/systemMenu";
 
   export default {
     components: {
@@ -122,10 +123,21 @@
       // 初始化功能权限数量
       this.funcNumber = this.$refs.funcRoleModal.funRoleData.length
       this.organizeMenuTree()
+      this.queryEqualMenus()
 
 
     },
     methods: {
+      // 查询平级菜单
+      queryEqualMenus() {
+        return new Promise((resolve, reject) => {
+          QuerySystemMenu().then(res => {
+              resolve(res)
+          }).catch(err => {
+              this.$message.error("数据库错误,请求c'c ")
+          }
+        })
+      },
       // 组织菜单树
       organizeMenuTree() {
         this.menuTreeData = [
