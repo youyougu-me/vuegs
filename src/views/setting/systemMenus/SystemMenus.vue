@@ -109,8 +109,11 @@
       return {
         // 功能权限的数量
         funcNumber: '',
-        // 提交需要
+        // 树形菜单
         menuTreeData: [],
+        // 平级菜单
+        EqualMenus: [],
+        // 提交需要
         selectedIcon: 'appstore',
         isBread: 'false',
         menuTitle: '',
@@ -119,11 +122,13 @@
         itemComponent: '',
       }
     },
-    mounted() {
+    async mounted() {
       // 初始化功能权限数量
       this.funcNumber = this.$refs.funcRoleModal.funRoleData.length
+      // 写了.catch会执行后面的代码,不写是不会执行的,我索性不写
+      this.EqualMenus = await this.queryEqualMenus()
+      console.log(this.EqualMenus)
       this.organizeMenuTree()
-      this.queryEqualMenus()
 
 
     },
@@ -131,11 +136,14 @@
       // 查询平级菜单
       queryEqualMenus() {
         return new Promise((resolve, reject) => {
+          // .then一定成功
           QuerySystemMenu().then(res => {
-              resolve(res)
+            resolve(res.data)
           }).catch(err => {
-              this.$message.error("数据库错误,请求c'c ")
-          }
+            // 有可能是系统
+            // 有可能是服务器捕捉然后返回的自定义的状态码
+            reject(err)
+          })
         })
       },
       // 组织菜单树
