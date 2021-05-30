@@ -156,6 +156,18 @@
           isBread: 'false',
           funcComponent: '',
         },
+        funcRoleSettingCurrentWhenAdd: {
+          // 模
+          type: 'false',
+          // 模
+          title: '',
+          // 模
+          onlyId: '',
+          icon: 'appstore',
+          path: '',
+          isBread: 'false',
+          funcComponent: '',
+        },
         funcRoleSettingClean: {
           type: 'false',
           title: '新增项',
@@ -174,6 +186,27 @@
       }
     },
     methods: {
+      // 拿给父组件点击编辑的时候调用
+      receiveFunRoleData(e, isAddMenuStatus) {
+        // 新增模式
+        if (isAddMenuStatus === true) {
+          this.isFuncRoleModal = true
+          this.funRoleData = []
+          this.funcRoleSettingCurrent = JSON.parse(JSON.stringify(this.funcRoleSettingCurrentWhenAdd))
+        }
+        // 编辑模式
+        else {
+          // 打开模态框
+          this.isFuncRoleModal = true
+          // 接收所有功能权限数据
+          this.funRoleData = JSON.parse(JSON.stringify(e))
+          // 默认展示第一项
+          if (this.funRoleData.length > 0) {
+            this.funcRoleSettingCurrent = this.funRoleData[0]
+          }
+        }
+
+      },
       clickFuncRoleItem(item, index) {
         this.activeItem = index
         // 不能用深拷贝,用的就是双向绑定

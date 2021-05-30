@@ -17,3 +17,11 @@ export function QuerySystemMenu(data) {
     data
   })
 }
+
+export function EditSystemMenu(data) {
+  return service.request({
+    method: "post",
+    url: "/editSystemMenu",
+    data
+  })
+}

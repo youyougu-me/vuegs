@@ -27,9 +27,9 @@ service.interceptors.response.use(response => {
   // 为接口返回数据剥去一层壳
   return response.data
 }, error => {
-  // 所有数据库错误我都在这里进行提醒了
+  // 所有接口错误我都在这里进行提醒了
   message.error({
-    content:"数据库服务错误",
+    content:"后端服务错误",
     duration:10
   })
   return Promise.reject(error)
