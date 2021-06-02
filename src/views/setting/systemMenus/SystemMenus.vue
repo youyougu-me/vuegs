@@ -4,7 +4,7 @@
     <div style="width: 300px;height: 100%;" class="border-right">
       <div class="layout-left-top" style="height: 50px;width: 100%;">
         <a-button type="primary" style="width: 100px;" @click="addMenus">新增</a-button>
-        <a-button type="danger" style="width: 100px;">删除</a-button>
+        <a-button type="danger" style="width: 100px;" @click="deleteTreeNode">删除</a-button>
       </div>
       <div style="width: 100%;height: calc(100% - 50px);overflow: hidden;">
         <a-tree
@@ -67,6 +67,7 @@
             tree-default-expand-all
             v-model="menuParentId"
             style="width: 250px"
+            :disabled="!isAddMenuStatus"
             :autoExpandParent="true"
             :treeData="menuTreeData"
             :dropdownStyle="{maxHeight:'400px',overflow:'auto'}"
@@ -137,6 +138,8 @@
         menuTreeData: [],
         // 平级菜单
         equalMenus: [],
+        // 当前选中树节点的属性 用于删除树节点
+        currentClickMenuTreeRef: {},
         // 提交需要S
         selectedIcon: 'appstore',
         isBread: 'false',
@@ -156,6 +159,37 @@
 
     },
     methods: {
+      deleteTreeNode() {
+        if (this.currentClickTreeNodeId === undefined) {
+          this.$message.error("请先选中树节点再进行删除")
+          return
+        }
+        if (this.currentClickTreeNodeId === '0') {
+          this.$message.error("根节点不可删除")
+          return
+        }
+        // console.log(this.currentClickMenuTreeRef)
+
+        let deleteArr = this.getTreeNodeChild(this.currentClickMenuTreeRef.node.dataRef)
+        console.log(deleteArr)
+
+      },
+      // 递归得到删除节点的子节点id
+      getTreeNodeChild(treeNode) {
+        let needArr = []
+
+        function getChild(treeNode) {
+          needArr.push(treeNode.key)
+          if (treeNode.children && treeNode.children.length > 0) {
+            treeNode.children.forEach(item => {
+              getChild(item)
+            })
+          }
+        }
+
+        getChild(treeNode)
+        return needArr
+      },
       // 新增菜单
       addMenus() {
         this.isAddMenuStatus = true
@@ -209,7 +243,7 @@
         ]
       },
       // 点中菜单树
-      clickMenu(e) {
+      clickMenu(e, ref) {
         // 切换为编辑模式
         this.isAddMenuStatus = false
         // 点击第二次的时候会等于undefined
@@ -232,6 +266,7 @@
             }
           })
         }
+        this.currentClickMenuTreeRef = ref
       },
       submit() {
         // 非空验证
