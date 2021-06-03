@@ -117,7 +117,7 @@
   import ComponentsTree from "@/components/module/setting_systenMenus/ComponentsTree";
   import IconModal from "@c/module/setting_systenMenus/IconModal";
   import FuncRoleModal from "@c/module/setting_systenMenus/FuncRoleModal";
-  import {AddsystemMenu, QuerySystemMenu, EditSystemMenu} from "@/api/systemMenu";
+  import {AddsystemMenu, QuerySystemMenu, EditSystemMenu, DeleteSystemMenuByIds} from "@/api/systemMenu";
 
   export default {
     components: {
@@ -171,7 +171,11 @@
         // console.log(this.currentClickMenuTreeRef)
 
         let deleteArr = this.getTreeNodeChild(this.currentClickMenuTreeRef.node.dataRef)
-        console.log(deleteArr)
+        DeleteSystemMenuByIds(deleteArr).then(async res => {
+          this.$message.success("删除成功")
+          this.equalMenus = await this.queryequalMenus()
+          this.organizeMenuTree(this.equalMenus)
+        })
 
       },
       // 递归得到删除节点的子节点id

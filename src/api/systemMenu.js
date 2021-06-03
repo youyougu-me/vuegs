@@ -25,3 +25,11 @@ export function EditSystemMenu(data) {
     data
   })
 }
+
+export function DeleteSystemMenuByIds(data) {
+  return service.request({
+    method: "post",
+    url: "/deleteSystemMenuByIds",
+    data
+  })
+}
