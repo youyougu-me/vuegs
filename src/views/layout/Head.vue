@@ -16,7 +16,7 @@
           <p @click="exitLogin">退出登录</p>
         </template>
         <a-icon type="user" style="font-size: 20px;"></a-icon>
-        <span style="margin-right: 20px;margin-left: 5px;">{{$store.state.login.username}}</span>
+        <span style="margin-right: 20px;margin-left: 5px;">{{$store.state.login.personName}}</span>
       </a-popover>
     </div>
   </div>
@@ -33,6 +33,8 @@
           .dispatch("login/exit")
           .then(res => {
             this.$router.push('/login');
+            localStorage.setItem("personName",'')
+            localStorage.setItem("token",'')
             this.$message.success("成功退出")
           })
           .catch(err => {

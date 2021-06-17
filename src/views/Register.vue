@@ -8,7 +8,7 @@
     >
       <div style="margin-top: 60px;font-size: 20px;">用户注册</div>
       <a-input style="width: 75%;margin-top: 20px;" size="large" placeholder="请填写公司校验码" v-model="companyId"></a-input>
-      <a-input style="width: 75%;margin-top: 20px;" size="large" placeholder="请填写用户名" v-model="username"></a-input>
+      <a-input style="width: 75%;margin-top: 20px;" size="large" placeholder="请填写用户名" v-model="personName"></a-input>
       <a-input style="width: 75%;margin-top: 20px;" size="large" placeholder="请填写邮箱" v-model="email"></a-input>
       <a-input style="width: 75%;margin-top: 20px;" size="large" type="password" placeholder="请输入密码"
                v-model="password"></a-input>
@@ -30,7 +30,7 @@
       return {
         resgisterLoading:false,
         companyId: '',
-        username: '',
+        personName: '',
         email: '',
         password: ''
       };
@@ -40,9 +40,10 @@
         this.resgisterLoading = true
         let submitObj = {
           companyId: this.companyId,
-          username: this.username,
+          personName: this.personName,
           email: this.email,
-          password: this.password
+          password: this.password,
+          // 默认值
         }
         ReGister(submitObj).then((res, err) => {
           let errObj = res.meta.msg

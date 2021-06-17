@@ -3,7 +3,7 @@ import {Login} from "@/api/login"
 
 const state = {
   token: localStorage.getItem("token") || '',
-  username: localStorage.getItem("username") || '',
+  personName: localStorage.getItem("personName") || '',
 }
 
 const getters = {}
@@ -12,8 +12,8 @@ const mutations = {
   SET_TOKEN(state, value) {
     state.token = value
   },
-  SET_USERNAME(state, value) {
-    state.username = value
+  SET_PERSONNAME(state, value) {
+    state.personName = value
   },
 }
 
@@ -23,9 +23,9 @@ const actions = {
       Login(data).then(res => {
         let result = res
         commit('SET_TOKEN', result.data.token)
-        commit('SET_USERNAME', result.data.username)
+        commit('SET_PERSONNAME', result.data.personName)
         localStorage.setItem("token", result.data.token)
-        localStorage.setItem("username", result.data.username)
+        localStorage.setItem("personName", result.data.personName)
         resolve(result)
       }).catch(err => {
         reject(err)
@@ -35,9 +35,9 @@ const actions = {
   exit({commit}) {
     return new Promise((resolve, reject) => {
       localStorage.removeItem("token")
-      localStorage.removeItem("username")
+      localStorage.removeItem("personName")
       commit("SET_TOKEN", '')
-      commit("SET_USERNAME", '')
+      commit("SET_PERSONNAME", '')
       resolve()
     })
 

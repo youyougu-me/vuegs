@@ -9,9 +9,9 @@ router.beforeEach((to, from, next) => {
   if (localStorage.getItem("token")) {
     if (to.path === '/login') {
       localStorage.removeItem("token")
-      localStorage.removeItem("username")
+      localStorage.removeItem("personName")
       store.commit("login/SET_TOKEN", '')
-      store.commit("login/SET_USERNAME", '')
+      store.commit("login/SET_personName", '')
       next()
     } else {
       next()
