@@ -54,8 +54,7 @@
 
           this.resgisterLoading = false
         }).catch(err => {
-          // console.log(err)
-         this.$message.error("后端服务错误")
+          // 可以不写.catch 因为我在拦截器里面处理了
           this.resgisterLoading = false
         })
       },

@@ -28,9 +28,12 @@ service.interceptors.response.use(response => {
   return response.data
 }, error => {
   // 后端捕捉到数据库错误就会返回500
+  // 一般来说,后端返回200就一定成功,500就给消息提示
+  // 坑response得自己点出来
+  // console.log(error.response.data)
   message.error({
-    content:"后端服务错误",
-    duration:2
+    content: error.response.data.meta.msg,
+    duration: 2
   })
   return Promise.reject(error)
 })
