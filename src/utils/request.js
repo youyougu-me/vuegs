@@ -27,10 +27,10 @@ service.interceptors.response.use(response => {
   // 为接口返回数据剥去一层壳
   return response.data
 }, error => {
-  // 所有接口错误我都在这里进行提醒了
+  // 后端捕捉到数据库错误就会返回500
   message.error({
     content:"后端服务错误",
-    duration:10
+    duration:2
   })
   return Promise.reject(error)
 })

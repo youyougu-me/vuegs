@@ -8,6 +8,8 @@
     >
       <div style="margin-top: 60px;font-size: 20px;">用户注册</div>
       <a-input style="width: 75%;margin-top: 20px;" size="large" placeholder="请填写公司校验码" v-model="companyId"></a-input>
+      <!--唯一-->
+      <a-input style="width: 75%;margin-top: 20px;" size="large" placeholder="请填写公司名称" v-model="companyName"></a-input>
       <a-input style="width: 75%;margin-top: 20px;" size="large" placeholder="请填写用户名" v-model="personName"></a-input>
       <a-input style="width: 75%;margin-top: 20px;" size="large" placeholder="请填写邮箱" v-model="email"></a-input>
       <a-input style="width: 75%;margin-top: 20px;" size="large" type="password" placeholder="请输入密码"
@@ -28,11 +30,12 @@
   export default {
     data() {
       return {
-        resgisterLoading:false,
-        companyId: '',
-        personName: '',
-        email: '',
-        password: ''
+        resgisterLoading: false,
+        companyId: '605993e335d5633554006f47',
+        companyName: '重庆蓝账有限公司',
+        personName: '谷双',
+        email: '945029149@qq.com',
+        password: '123456'
       };
     },
     methods: {
@@ -40,27 +43,23 @@
         this.resgisterLoading = true
         let submitObj = {
           companyId: this.companyId,
+          companyName: this.companyName,
           personName: this.personName,
           email: this.email,
           password: this.password,
           // 默认值
         }
         ReGister(submitObj).then((res, err) => {
-          let errObj = res.meta.msg
-          for (let key in errObj) {
-            if (key === 'emailSuccessErr') {
-              this.$message.success(errObj[key])
-              this.resgisterLoading = false
-              break;
-            } else {
-              this.$message.error(errObj[key])
-              break;
-            }
-          }
+          console.log(res)
+
+          this.resgisterLoading = false
+        }).catch(err => {
+          // console.log(err)
+         this.$message.error("后端服务错误")
           this.resgisterLoading = false
         })
       },
-      goLogin(){
+      goLogin() {
         this.$router.push("/login")
       }
     }
