@@ -5,6 +5,7 @@
       <div class="layout-left-top" style="height: 50px;width: 100%;">
         <a-button type="primary" style="width: 100px;" @click="addMenus">新增</a-button>
         <a-button type="danger" style="width: 100px;" @click="deleteTreeNode">删除</a-button>
+        <a-button @click="$router.push('/index/setting/userRole')">角色管理</a-button>
       </div>
       <div style="width: 100%;height: calc(100% - 50px);overflow: hidden;">
         <a-tree

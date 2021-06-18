@@ -42,16 +42,18 @@
       register() {
         this.resgisterLoading = true
         let submitObj = {
+          email: this.email,
+          personName: this.personName,
           companyId: this.companyId,
           companyName: this.companyName,
-          personName: this.personName,
-          email: this.email,
           password: this.password,
-          // 默认值
+          // 默认实习生
+          personRoleId: "60cc514ef797a73730000392",
+          // 默认技术部
+          personDepartmentId: "60c06175f797a717580057a3"
         }
         ReGister(submitObj).then((res, err) => {
-          console.log(res)
-
+          this.$message.success("注册成功")
           this.resgisterLoading = false
         }).catch(err => {
           // 可以不写.catch 因为我在拦截器里面处理了
